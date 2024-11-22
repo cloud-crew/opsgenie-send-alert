@@ -1,7 +1,7 @@
 # Copyright (c) Cloud Crew
 # Licensed under the MIT License
 
-FROM ghcr.io/alpine:3.19
+FROM ghcr.io/linuxcontainers/alpine:3.20
 
 LABEL org.opencontainers.image.authors="Cloud Crew" \
     org.opencontainers.image.url="https://github.com/cloud-crew/opsgenie-send-alert" \
