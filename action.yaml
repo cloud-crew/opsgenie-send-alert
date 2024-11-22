@@ -1,0 +1,96 @@
+name: "OpsGenie Send Alert"
+description: "Send an alert to OpsGenie"
+
+author: "Cloud Crew"
+branding:
+  icon: "user-check"
+  color: "blue"
+
+# Based on https://docs.opsgenie.com/docs/alert-api#create-alert
+inputs:
+  apiUrl:
+    description: "OpsGenie API URL (default: https://api.opsgenie.com/v2)"
+    default: https://api.opsgenie.com/v2
+    required: true
+
+  apiKey:
+    description: "OpsGenie API Key"
+    required: true
+
+  message:
+    description: "Message of the alert. (Limit: 130 characters)"
+    required: true
+
+  alias:
+    description: "Client-defined identifier of the alert, used for alert de-duplication. (Limit: 512 characters)"
+    required: false
+
+  description:
+    description: "Detailed description of the alert. (Limit: 15000 characters)"
+    required: false
+
+  responders:
+    description: "An array of teams, users, escalations, and schedules that the alert will be routed to. (Limit: 50 teams, users, escalations, or schedules)"
+    required: false
+
+  visibleTo:
+    description: "An array of teams, users, escalations, and schedules that the alert will be visible to without notifications. (Limit: 50 teams or users in total)"
+    required: false
+
+  actions:
+    description: "An array of custom actions that will be available for the alert. (Limit: 10 actions with 50 characters each)"
+    required: false
+
+  tags:
+    description: "An array of tags associated with the alert. (Limit: 20 tags with 50 characters each)"
+    required: false
+
+  details:
+    description: "A map of key-value pairs for custom properties of the alert. (Limit: 8000 characters in total)"
+    required: false
+
+  entity:
+    description: "Entity field of the alert, generally used to specify which domain the alert is related to. (Limit: 512 characters)"
+    required: false
+
+  source:
+    description: "Source field of the alert, specifying where the alert is created from. (Limit: 100 characters)"
+    required: false
+
+  priority:
+    description: "Priority level of the alert. Default is P3. (Possible values: P1, P2, P3, P4, P5)"
+    required: false
+
+  user:
+    description: "Display name of the request owner. (Limit: 100 characters)"
+    required: false
+
+  note:
+    description: "Additional note that will be added to the alert. (Limit: 25000 characters)"
+    required: false
+
+  verbose:
+    description: "Enable curl verbose output for debugging purposes."
+    default: "false"
+    required: false
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.apiUrl }}
+    - ${{ inputs.apiKey }}
+    - ${{ inputs.message }}
+    - ${{ inputs.alias }}
+    - ${{ inputs.description }}
+    - ${{ inputs.responders }}
+    - ${{ inputs.visibleTo }}
+    - ${{ inputs.actions }}
+    - ${{ inputs.tags }}
+    - ${{ inputs.details }}
+    - ${{ inputs.entity }}
+    - ${{ inputs.source }}
+    - ${{ inputs.priority }}
+    - ${{ inputs.user }}
+    - ${{ inputs.note }}
+    - ${{ inputs.verbose }}
