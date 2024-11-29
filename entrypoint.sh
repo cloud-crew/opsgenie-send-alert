@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Copyright (c) Cloud Crew
 # Licensed under the MIT License

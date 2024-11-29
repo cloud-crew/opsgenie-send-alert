@@ -11,5 +11,8 @@ LABEL org.opencontainers.image.authors="Cloud Crew" \
 
 RUN apk --update add bash curl jq
 
+# Copiar o script e garantir permissões de execução
 COPY ["entrypoint.sh", "LICENSE", "/"]
+RUN chmod +x /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
