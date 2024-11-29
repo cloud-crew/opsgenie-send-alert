@@ -76,7 +76,7 @@ inputs:
 
 runs:
   using: "docker"
-  image: "docker://ghcr.io/cloud-crew/opsgenie-send-alert:latest"
+  image: "Dockerfile"
   args:
     - ${{ inputs.apiUrl }}
     - ${{ inputs.apiKey }}
